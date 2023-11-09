@@ -1,27 +1,25 @@
 <script lang="ts">
-  import { getContext, onMount } from "svelte";
+  import { getStore } from "./store";
 
-  let ho = getContext<HTMLElement>("swiper");
-  let abc = ho?.nodeName;
-
-  console.log(ho);
-
-  onMount(() => {
-    console.log("child onMount", ho);
-  });
+  const { swiper } = getStore();
 
   function next() {
-    ho?.swiper?.slideNext?.();
+    $swiper.slideNext();
   }
 
   // Add your component logic here
 </script>
 
 <div>
-  {ho?.message}
   <button on:click={next}>sub 다음으로</button>
 </div>
 
 <style>
+  button {
+    margin: 16px;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  }
   /* Add your component styles here */
 </style>
